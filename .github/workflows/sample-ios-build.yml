@@ -1,0 +1,30 @@
+name: sample-ios-build.yml
+
+on:
+  push:
+    branches: [ 'main' ]
+  pull_request:
+    branches: [ 'main' ]
+
+jobs:
+  sample-ios-build:
+    runs-on: macos-13
+
+    defaults:
+      run:
+        working-directory: sample/ios
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: sudo xcode-select -switch /Applications/Xcode_15.2.app
+
+      - run: |
+          xcodebuild clean build \
+            -project llvp.xcodeproj \
+            -scheme llvp \
+            -configuration Debug \
+            -destination 'generic/platform=iOS' \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO
