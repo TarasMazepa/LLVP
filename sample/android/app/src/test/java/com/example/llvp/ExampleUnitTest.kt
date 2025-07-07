@@ -1,4 +1,4 @@
-package com.sample.myapplication
+package com.example.llvp
 
 import org.junit.Test
 
