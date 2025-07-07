@@ -9,4 +9,5 @@ Icon
 **/*.xcuserdata/
 **/*.xcodeproj/xcuserdata/
 **/*.xcodeproj/project.xcworkspace/xcuserdata/
+**/*.xcodeproj/project.xcworkspace/xcshareddata/
 **/*.xcworkspace/xcuserdata/
