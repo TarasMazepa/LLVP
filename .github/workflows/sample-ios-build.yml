@@ -1,4 +1,4 @@
-name: sample-ios-build.yml
+name: sample-ios-build
 
 on:
   push:
@@ -8,33 +8,20 @@ on:
 
 jobs:
   sample-ios-build:
-    runs-on: macos-latest
+    runs-on: macos-14
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Inspect .pbxproj file content
+      - name: Print macOS and Xcode environment info
         run: |
-          cat sample/llvp/llvp.xcodeproj/project.pbxproj
-      
-      #- run: pod install --project-directory=sample/llvp
+          sw_vers
+          xcode-select --print-path
+          xcodebuild -version
+          xcodebuild -showsdks
 
-      - name: Check Path
-        run: xcrun xcode-select --print-path
-      - name: Present Working Directory
-        run: pwd
-      - name: Double-check macOS version
-        run: sw_vers
-      - name: Double-check Xcode.app selected
-        run: xcode-select --print-path
-      - name: Check xcodebuild version
-        run: xcodebuild -version
-      - name: Check xcode embedded SDKs
-        run: xcodebuild -showsdks
-      - name: Show buildable schemes
-        run: xcodebuild -list
-
-      - run: sudo xcode-select -switch /Applications/Xcode_15.2.app
+      - name: List available Xcode schemes
+        run: xcodebuild -list -project sample/llvp/llvp.xcodeproj
 
       - run: |
           xcodebuild clean build \
