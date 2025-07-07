@@ -8,7 +8,7 @@ on:
 
 jobs:
   sample-ios-build:
-    runs-on: macos-13
+    runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -16,6 +16,23 @@ jobs:
       - name: Inspect .pbxproj file content
         run: |
           cat sample/llvp/llvp.xcodeproj/project.pbxproj
+      
+      #- run: pod install --project-directory=sample/llvp
+
+      - name: Check Path
+        run: xcrun xcode-select --print-path
+      - name: Present Working Directory
+        run: pwd
+      - name: Double-check macOS version
+        run: sw_vers
+      - name: Double-check Xcode.app selected
+        run: xcode-select --print-path
+      - name: Check xcodebuild version
+        run: xcodebuild -version
+      - name: Check xcode embedded SDKs
+        run: xcodebuild -showsdks
+      - name: Show buildable schemes
+        run: xcodebuild -list
 
       - run: sudo xcode-select -switch /Applications/Xcode_15.2.app
 
