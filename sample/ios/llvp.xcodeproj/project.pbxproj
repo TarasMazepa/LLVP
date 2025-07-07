@@ -7,32 +7,19 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		64ADDC202E1B703C00A52AAF /* llvp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = llvp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		64770DBB2E1B86AA00C90ECC /* llvp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = llvp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		64ADDC322E1B703D00A52AAF /* Exceptions for "llvp" folder in "llvp" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 64ADDC1F2E1B703C00A52AAF /* llvp */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		64ADDC222E1B703C00A52AAF /* llvp */ = {
+		64770DBD2E1B86AA00C90ECC /* llvp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				64ADDC322E1B703D00A52AAF /* Exceptions for "llvp" folder in "llvp" target */,
-			);
 			path = llvp;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		64ADDC1D2E1B703C00A52AAF /* Frameworks */ = {
+		64770DB82E1B86AA00C90ECC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,18 +29,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		64ADDC172E1B703C00A52AAF = {
+		64770DB22E1B86AA00C90ECC = {
 			isa = PBXGroup;
 			children = (
-				64ADDC222E1B703C00A52AAF /* llvp */,
-				64ADDC212E1B703C00A52AAF /* Products */,
+				64770DBD2E1B86AA00C90ECC /* llvp */,
+				64770DBC2E1B86AA00C90ECC /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		64ADDC212E1B703C00A52AAF /* Products */ = {
+		64770DBC2E1B86AA00C90ECC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				64ADDC202E1B703C00A52AAF /* llvp.app */,
+				64770DBB2E1B86AA00C90ECC /* llvp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,64 +48,64 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		64ADDC1F2E1B703C00A52AAF /* llvp */ = {
+		64770DBA2E1B86AA00C90ECC /* llvp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 64ADDC332E1B703D00A52AAF /* Build configuration list for PBXNativeTarget "llvp" */;
+			buildConfigurationList = 64770DC62E1B86AB00C90ECC /* Build configuration list for PBXNativeTarget "llvp" */;
 			buildPhases = (
-				64ADDC1C2E1B703C00A52AAF /* Sources */,
-				64ADDC1D2E1B703C00A52AAF /* Frameworks */,
-				64ADDC1E2E1B703C00A52AAF /* Resources */,
+				64770DB72E1B86AA00C90ECC /* Sources */,
+				64770DB82E1B86AA00C90ECC /* Frameworks */,
+				64770DB92E1B86AA00C90ECC /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				64ADDC222E1B703C00A52AAF /* llvp */,
+				64770DBD2E1B86AA00C90ECC /* llvp */,
 			);
 			name = llvp;
 			packageProductDependencies = (
 			);
 			productName = llvp;
-			productReference = 64ADDC202E1B703C00A52AAF /* llvp.app */;
+			productReference = 64770DBB2E1B86AA00C90ECC /* llvp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		64ADDC182E1B703C00A52AAF /* Project object */ = {
+		64770DB32E1B86AA00C90ECC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1630;
 				LastUpgradeCheck = 1630;
 				TargetAttributes = {
-					64ADDC1F2E1B703C00A52AAF = {
+					64770DBA2E1B86AA00C90ECC = {
 						CreatedOnToolsVersion = 16.3;
 					};
 				};
 			};
-			buildConfigurationList = 64ADDC1B2E1B703C00A52AAF /* Build configuration list for PBXProject "llvp" */;
+			buildConfigurationList = 64770DB62E1B86AA00C90ECC /* Build configuration list for PBXProject "llvp" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 64ADDC172E1B703C00A52AAF;
+			mainGroup = 64770DB22E1B86AA00C90ECC;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 64ADDC212E1B703C00A52AAF /* Products */;
+			productRefGroup = 64770DBC2E1B86AA00C90ECC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				64ADDC1F2E1B703C00A52AAF /* llvp */,
+				64770DBA2E1B86AA00C90ECC /* llvp */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		64ADDC1E2E1B703C00A52AAF /* Resources */ = {
+		64770DB92E1B86AA00C90ECC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -128,7 +115,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		64ADDC1C2E1B703C00A52AAF /* Sources */ = {
+		64770DB72E1B86AA00C90ECC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -138,63 +125,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		64ADDC342E1B703D00A52AAF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6PH39QDD8H;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = llvp/Info.plist;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.llvp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		64ADDC352E1B703D00A52AAF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6PH39QDD8H;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = llvp/Info.plist;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.llvp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		64ADDC362E1B703D00A52AAF /* Debug */ = {
+		64770DC42E1B86AB00C90ECC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -258,7 +189,7 @@
 			};
 			name = Debug;
 		};
-		64ADDC372E1B703D00A52AAF /* Release */ = {
+		64770DC52E1B86AB00C90ECC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -315,28 +246,84 @@
 			};
 			name = Release;
 		};
+		64770DC72E1B86AB00C90ECC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6PH39QDD8H;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.llvp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		64770DC82E1B86AB00C90ECC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6PH39QDD8H;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.llvp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		64ADDC1B2E1B703C00A52AAF /* Build configuration list for PBXProject "llvp" */ = {
+		64770DB62E1B86AA00C90ECC /* Build configuration list for PBXProject "llvp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				64ADDC362E1B703D00A52AAF /* Debug */,
-				64ADDC372E1B703D00A52AAF /* Release */,
+				64770DC42E1B86AB00C90ECC /* Debug */,
+				64770DC52E1B86AB00C90ECC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		64ADDC332E1B703D00A52AAF /* Build configuration list for PBXNativeTarget "llvp" */ = {
+		64770DC62E1B86AB00C90ECC /* Build configuration list for PBXNativeTarget "llvp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				64ADDC342E1B703D00A52AAF /* Debug */,
-				64ADDC352E1B703D00A52AAF /* Release */,
+				64770DC72E1B86AB00C90ECC /* Debug */,
+				64770DC82E1B86AB00C90ECC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 64ADDC182E1B703C00A52AAF /* Project object */;
+	rootObject = 64770DB32E1B86AA00C90ECC /* Project object */;
 }
