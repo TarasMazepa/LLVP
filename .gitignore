@@ -4,3 +4,8 @@
 **/.idea/*
 
 Icon
+
+**/.xcuserstate
+**/.xcuserdata/
+**/.xcworkspace/xcuserdata/
+**/.xcodeproj/xcuserdata/
