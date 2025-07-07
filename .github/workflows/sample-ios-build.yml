@@ -10,10 +10,6 @@ jobs:
   sample-ios-build:
     runs-on: macos-13
 
-    defaults:
-      run:
-        working-directory: sample/llvp
-
     steps:
       - uses: actions/checkout@v4
 
@@ -21,7 +17,7 @@ jobs:
 
       - run: |
           xcodebuild clean build \
-            -project llvp.xcodeproj \
+            -project sample/llvp/llvp.xcodeproj \
             -scheme llvp \
             -configuration Debug \
             -destination 'generic/platform=iOS' \
