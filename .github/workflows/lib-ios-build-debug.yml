@@ -1,0 +1,92 @@
+name: lib-ios-build-debug.yml
+
+on:
+  push:
+    branches: ['main']
+    paths: ['lib/**']
+  pull_request:
+    branches: ['main']
+    paths: ['lib/**']
+  workflow_dispatch:
+
+jobs:
+  debug-ios-build:
+    runs-on: macos-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Debug - Show environment
+        run: |
+          echo "=== Environment Info ==="
+          echo "OS: $(uname -a)"
+          echo "Xcode version: $(xcodebuild -version)"
+          echo "Working directory: $(pwd)"
+          echo "Directory contents:"
+          ls -la
+          echo "Lib directory contents:"
+          ls -la lib/
+
+      - name: Install CMake
+        run: |
+          brew install cmake
+
+      - name: Debug - Show iOS SDK info
+        run: |
+          echo "=== iOS SDK Info ==="
+          xcodebuild -showsdks
+          echo "Available simulators:"
+          xcrun simctl list devices | grep iPhone
+
+      - name: Debug - Test simple iOS build
+        run: |
+          echo "=== Testing Simple iOS Build ==="
+          cd lib
+          
+          # Create build directory
+          mkdir -p build-ios-debug
+          cd build-ios-debug
+          
+          # Configure with CMake for iOS (simplest config)
+          cmake -B . -S .. \
+            -DCMAKE_SYSTEM_NAME=iOS \
+            -DCMAKE_OSX_DEPLOYMENT_TARGET=12.0 \
+            -DCMAKE_OSX_ARCHITECTURES=arm64 \
+            -DCMAKE_BUILD_TYPE=Debug
+          
+          echo "=== CMake configuration completed ==="
+          
+          # Try to build
+          make VERBOSE=1 || echo "Build failed, but continuing for debugging"
+          
+          echo "=== Build attempt completed ==="
+          
+          # Show what was created
+          echo "=== Build artifacts ==="
+          find . -type f -name "*.a" -o -name "*.framework" -o -name "*.o" | head -10
+          ls -la || echo "No files in build directory"
+
+      - name: Debug - Show build logs
+        if: always()
+        run: |
+          echo "=== Build Directory Contents ==="
+          find lib/build-ios-debug -type f 2>/dev/null | head -20 || echo "No build directory found"
+          
+          echo "=== CMake Cache ==="
+          cat lib/build-ios-debug/CMakeCache.txt 2>/dev/null | head -50 || echo "No CMake cache found"
+          
+          echo "=== CMake Error Log ==="
+          cat lib/build-ios-debug/CMakeError.log 2>/dev/null | head -50 || echo "No CMake error log found"
+
+      - name: Upload debug artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-ios-build-logs
+          path: |
+            lib/build-ios-debug/
+            lib/CMakeLists.txt
+            lib/version.h
+            lib/ios.toolchain.cmake
+          retention-days: 7 
