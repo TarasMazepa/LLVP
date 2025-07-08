@@ -1,4 +1,4 @@
-name: lib-android-build.yml
+name: Build C++ Library for Android
 
 on:
   push:
@@ -7,6 +7,7 @@ on:
   pull_request:
     branches: ['main']
     paths: ['lib/**']
+  workflow_dispatch:
 
 jobs:
   lib-android-build:
@@ -17,7 +18,8 @@ jobs:
         api-level: [21, 24, 29]
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Set up JDK
         uses: actions/setup-java@v4
@@ -27,24 +29,23 @@ jobs:
 
       - name: Set up Android NDK
         uses: android-actions/setup-android@v2
-        with:
-          ndk-version: '25.2.9519653'
 
-      - name: Create build directory
-        run: mkdir -p lib/build
-
-      - name: Configure CMake for Android
+      - name: CMake for Android
         run: |
-          cmake -B lib/build \
-            -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK/build/cmake/android.toolchain.cmake \
+          cd lib
+          mkdir -p build
+          cd build
+          cmake -B . -S .. \
+            -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
             -DANDROID_ABI=${{ matrix.abi }} \
             -DANDROID_PLATFORM=android-${{ matrix.api-level }} \
             -DCMAKE_BUILD_TYPE=Release \
-            -DANDROID_STL=c++_shared \
-            lib
+            -DANDROID_STL=c++_shared
 
       - name: Build library
-        run: cmake --build lib/build --config Release
+        run: |
+          cd lib/build
+          make -j$(nproc)
 
       - name: Create artifacts directory
         run: mkdir -p artifacts/android/${{ matrix.abi }}-api${{ matrix.api-level }}
@@ -53,6 +54,7 @@ jobs:
         run: |
           cp -r lib/build/* artifacts/android/${{ matrix.abi }}-api${{ matrix.api-level }}/
         continue-on-error: true
+        working-directory: lib
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
@@ -63,7 +65,7 @@ jobs:
 
   build-summary:
     runs-on: ubuntu-latest
-    needs: build-android
+    needs: lib-android-build
     if: always()
 
     steps:
