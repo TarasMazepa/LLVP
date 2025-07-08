@@ -1,4 +1,4 @@
-name: Build C++ Library for Android
+name: lib-android-build.yml
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
     paths: ['lib/**']
 
 jobs:
-  build-android:
+  lib-android-build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -17,8 +17,7 @@ jobs:
         api-level: [21, 24, 29]
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Set up JDK
         uses: actions/setup-java@v4
