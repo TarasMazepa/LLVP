@@ -1,4 +1,4 @@
-name: Debug Build - C++ Library for Android
+name: lib-debug-build.yml
 
 on:
   push:
