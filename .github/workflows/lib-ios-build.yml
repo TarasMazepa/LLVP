@@ -1,0 +1,105 @@
+name: Build C++ Library for iOS
+
+on:
+  push:
+    branches: ['main']
+    paths: ['lib/**']
+  pull_request:
+    branches: ['main']
+    paths: ['lib/**']
+  workflow_dispatch:
+
+jobs:
+  build-ios:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        platform: [iphoneos, iphonesimulator]
+        architecture: [arm64, x86_64]
+        exclude:
+          # x86_64 is only for simulator
+          - platform: iphoneos
+            architecture: x86_64
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Debug - Show environment
+        run: |
+          echo "=== Environment Info ==="
+          echo "OS: $(uname -a)"
+          echo "Xcode version: $(xcodebuild -version)"
+          echo "Working directory: $(pwd)"
+          echo "Directory contents:"
+          ls -la
+          echo "Lib directory contents:"
+          ls -la lib/
+
+      - name: Install CMake
+        run: |
+          brew install cmake
+
+      - name: Debug - Show iOS SDK info
+        run: |
+          echo "=== iOS SDK Info ==="
+          xcodebuild -showsdks
+          echo "Available platforms:"
+          xcodebuild -list -project lib/CMakeLists.txt 2>/dev/null || echo "No Xcode project found"
+
+      - name: Configure CMake for iOS
+        run: |
+          cd lib
+          mkdir -p build-ios
+          cd build-ios
+          
+          # Configure CMake for iOS
+          cmake -B . -S .. \
+            -DCMAKE_SYSTEM_NAME=iOS \
+            -DCMAKE_OSX_DEPLOYMENT_TARGET=12.0 \
+            -DCMAKE_OSX_ARCHITECTURES=${{ matrix.architecture }} \
+            -DCMAKE_XCODE_ATTRIBUTE_ONLY_ACTIVE_ARCH=NO \
+            -DCMAKE_BUILD_TYPE=Release
+          
+          echo "=== CMake configuration completed ==="
+
+      - name: Build library for iOS
+        run: |
+          cd lib/build-ios
+          make -j$(sysctl -n hw.ncpu)
+          
+          echo "=== Build completed ==="
+          echo "Build artifacts:"
+          find . -name "*.a" -o -name "*.framework" | head -10
+
+      - name: Create artifacts directory
+        run: |
+          mkdir -p artifacts/ios/${{ matrix.platform }}-${{ matrix.architecture }}
+
+      - name: Copy build artifacts
+        run: |
+          cp -r lib/build-ios/* artifacts/ios/${{ matrix.platform }}-${{ matrix.architecture }}/
+        continue-on-error: true
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: llvp-lib-ios-${{ matrix.platform }}-${{ matrix.architecture }}
+          path: artifacts/ios/${{ matrix.platform }}-${{ matrix.architecture }}/
+          retention-days: 30
+
+  build-summary:
+    runs-on: macos-latest
+    needs: build-ios
+    if: always()
+
+    steps:
+      - name: Build Summary
+        run: |
+          echo "## iOS Build Summary" >> $GITHUB_STEP_SUMMARY
+          echo "C++ Library built for iOS with the following configurations:" >> $GITHUB_STEP_SUMMARY
+          echo "- Platforms: iphoneos, iphonesimulator" >> $GITHUB_STEP_SUMMARY
+          echo "- Architectures: arm64, x86_64 (simulator only)" >> $GITHUB_STEP_SUMMARY
+          echo "- Total builds: 3 (iphoneos-arm64, iphonesimulator-arm64, iphonesimulator-x86_64)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Artifacts are available for download from the Actions tab." >> $GITHUB_STEP_SUMMARY 
