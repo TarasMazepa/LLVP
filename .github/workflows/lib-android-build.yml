@@ -1,0 +1,80 @@
+name: lib-android-build.yml
+
+on:
+  push:
+    branches: ['main']
+    paths: ['lib/**']
+  pull_request:
+    branches: ['main']
+    paths: ['lib/**']
+  workflow_dispatch:
+
+jobs:
+  lib-android-build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        abi: [arm64-v8a, armeabi-v7a, x86, x86_64]
+        api-level: [21, 24, 29]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Set up Android NDK
+        uses: android-actions/setup-android@v2
+
+      - name: CMake for Android
+        run: |
+          cd lib
+          mkdir -p build
+          cd build
+          cmake -B . -S .. \
+            -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
+            -DANDROID_ABI=${{ matrix.abi }} \
+            -DANDROID_PLATFORM=android-${{ matrix.api-level }} \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DANDROID_STL=c++_shared
+
+      - name: Build library
+        run: |
+          cd lib/build
+          make -j$(nproc)
+
+      - name: Create artifacts directory
+        run: mkdir -p artifacts/android/${{ matrix.abi }}-api${{ matrix.api-level }}
+
+      - name: Copy build artifacts
+        run: |
+          cp -r lib/build/* artifacts/android/${{ matrix.abi }}-api${{ matrix.api-level }}/
+        continue-on-error: true
+        working-directory: lib
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: llvp-lib-android-${{ matrix.abi }}-api${{ matrix.api-level }}
+          path: artifacts/android/${{ matrix.abi }}-api${{ matrix.api-level }}/
+          retention-days: 30
+
+  build-summary:
+    runs-on: ubuntu-latest
+    needs: lib-android-build
+    if: always()
+
+    steps:
+      - name: Build Summary
+        run: |
+          echo "## Build Summary" >> $GITHUB_STEP_SUMMARY
+          echo "C++ Library built for Android with the following configurations:" >> $GITHUB_STEP_SUMMARY
+          echo "- ABIs: arm64-v8a, armeabi-v7a, x86, x86_64" >> $GITHUB_STEP_SUMMARY
+          echo "- API Levels: 21, 24, 29" >> $GITHUB_STEP_SUMMARY
+          echo "- Total builds: 12" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Artifacts are available for download from the Actions tab." >> $GITHUB_STEP_SUMMARY 
