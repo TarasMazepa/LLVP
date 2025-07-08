@@ -1,4 +1,4 @@
-name: Debug Build - C++ Library for iOS
+name: lib-ios-build-debug.yml
 
 on:
   push:
